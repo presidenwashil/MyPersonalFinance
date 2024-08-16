@@ -24,13 +24,28 @@ public class IncomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_income, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_income, container, false);
 
         dbHelper = new DatabaseHelper(getContext());
-        ListView listView = view.findViewById(R.id.income_list);
+        ListView listView = rootView.findViewById(R.id.income_list);
         Cursor cursor = dbHelper.getIncome();
         adapter = new IncomeAdapter(getContext(), cursor);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener((parent, itemView, position, id) -> {
+            Cursor itemCursor = (Cursor) parent.getItemAtPosition(position);
+            int incomeId = itemCursor.getInt(itemCursor.getColumnIndexOrThrow("_id"));
+            String amount = itemCursor.getString(itemCursor.getColumnIndexOrThrow("amount"));
+            String description = itemCursor.getString(itemCursor.getColumnIndexOrThrow("description"));
+            String date = itemCursor.getString(itemCursor.getColumnIndexOrThrow("date"));
+
+            Intent intent = new Intent(getActivity(), EditIncomeActivity.class);
+            intent.putExtra("INCOME_ID", incomeId);
+            intent.putExtra("AMOUNT", amount);
+            intent.putExtra("DESCRIPTION", description);
+            intent.putExtra("DATE", date);
+            addIncomeLauncher.launch(intent);
+        });
 
         addIncomeLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -41,10 +56,10 @@ public class IncomeFragment extends Fragment {
             }
         );
 
-        FloatingActionButton fab = view.findViewById(R.id.fab_add_income);
+        FloatingActionButton fab = rootView.findViewById(R.id.fab_add_income);
         fab.setOnClickListener(v -> addIncomeLauncher.launch(new Intent(getActivity(), AddIncomeActivity.class)));
 
-        return view;
+        return rootView;
     }
 
     private void refreshListView() {

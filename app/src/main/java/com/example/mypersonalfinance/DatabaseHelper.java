@@ -63,4 +63,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT id AS _id, * FROM " + TABLE_NAME + " WHERE " + COLUMN_TYPE + " = 'expense'", null);
     }
+
+    public boolean updateTransaction(int incomeId, double newAmount, String newDescription, String newDate, String income) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_AMOUNT, newAmount);
+        values.put(COLUMN_DESCRIPTION, newDescription);
+        values.put(COLUMN_DATE, newDate);
+        values.put(COLUMN_TYPE, income);
+        int result = db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(incomeId)});
+        return result > 0;
+    }
+
+    public boolean deleteTransaction(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        return result > 0;
+    }
 }

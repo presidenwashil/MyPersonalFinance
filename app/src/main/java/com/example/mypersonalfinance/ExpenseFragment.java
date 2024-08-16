@@ -32,6 +32,22 @@ public class ExpenseFragment extends Fragment {
         adapter = new ExpenseAdapter(getContext(), cursor);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener((parent, itemView, position, id) -> {
+            Cursor itemCursor = (Cursor) parent.getItemAtPosition(position);
+            int expenseId = itemCursor.getInt(itemCursor.getColumnIndexOrThrow("_id"));
+            String amount = itemCursor.getString(itemCursor.getColumnIndexOrThrow("amount"));
+            String description = itemCursor.getString(itemCursor.getColumnIndexOrThrow("description"));
+            String date = itemCursor.getString(itemCursor.getColumnIndexOrThrow("date"));
+
+            Intent intent = new Intent(getActivity(), EditExpenseActivity.class);
+            intent.putExtra("EXPENSE_ID", expenseId);
+            intent.putExtra("AMOUNT", amount);
+            intent.putExtra("DESCRIPTION", description);
+            intent.putExtra("DATE", date);
+            addExpenseLauncher.launch(intent);
+        });
+
+
         addExpenseLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {

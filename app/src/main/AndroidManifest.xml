@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPersonalFinance">
         <activity
+            android:name=".EditExpenseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditIncomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddExpenseActivity"
             android:exported="false" />
         <activity

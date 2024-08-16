@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_foreground"
-        tools:srcCompat="@drawable/mypersonalfinance" />
+        android:src="@drawable/mypersonalfinance" />
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"

@@ -16,6 +16,7 @@
         android:id="@+id/amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
         android:layout_margin="16dp"
         android:hint="Amount" />
 
