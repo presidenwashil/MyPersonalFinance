@@ -51,6 +51,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllTransactions() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        return db.rawQuery("SELECT id AS _id, * FROM " + TABLE_NAME, null);
+    }
+
+    public Cursor getIncome() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT id AS _id, * FROM " + TABLE_NAME + " WHERE " + COLUMN_TYPE + " = 'income'", null);
+    }
+
+    public Cursor getExpense() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT id AS _id, * FROM " + TABLE_NAME + " WHERE " + COLUMN_TYPE + " = 'expense'", null);
     }
 }
