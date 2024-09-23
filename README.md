@@ -12,11 +12,11 @@
 
 Here are some screenshots of the **My Personal Finance** app:
 
-![Splash Screen](/screenshot/splash.jpg)
-![Login Screen](/screenshot/login.jpg)
-![Home Screen](/screenshot/home.jpg)
-![Add Transaction](/screenshot/add.jpg)
-![Update Transaction](/screenshot/update.jpg)
+<img src="/screenshot/splash.jpg" alt="Splash Screen" width="250"/>
+<img src="/screenshot/login.jpg" alt="Login Screen" width="250"/>
+<img src="/screenshot/home.jpg" alt="Home Screen" width="250"/>
+<img src="/screenshot/add.jpg" alt="Add Transaction" width="250"/>
+<img src="/screenshot/update.jpg" alt="Update Transaction" width="250"/>
 
 > **Note**: These images showcase the app's interface and functionality.
 
